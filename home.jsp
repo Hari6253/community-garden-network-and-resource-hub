@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Community Garden Network</title>
+    <title>Home - Community Garden Network</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         body {
@@ -14,25 +14,25 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-        nav, footer {
+        nav {
             background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
             padding: 10px 0;
             text-align: center;
         }
-        nav ul, footer ul {
+        nav ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-        nav ul li, footer ul li {
+        nav ul li {
             display: inline;
             margin: 0 10px;
         }
-        nav ul li a, footer ul li a {
+        nav ul li a {
             text-decoration: none;
             color: #333; /* Text color */
         }
-        nav ul li a:hover, footer ul li a:hover {
+        nav ul li a:hover {
             color: #4CAF50; /* Hover color */
         }
         .container {
@@ -45,7 +45,7 @@
             border-radius: 10px;
         }
         h1 {
-            color: #fff; /* Heading color */
+            color: #333; /* Heading color */
         }
         footer {
             position: fixed;
@@ -55,30 +55,48 @@
             background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
             padding: 10px 0;
             text-align: center;
-            font-family: "Times New Roman", Times, serif; /* Different font for footer */
+        }
+        .footer-content {
+            font-size: 12px;
+            color: #333; /* Text color */
         }
     </style>
 </head>
 <body>
+    <!-- Navigation bar -->
     <nav>
         <ul>
-            <li><a href="register.jsp">Register</a></li>
-            <li><a href="login.jsp">Login</a></li>
+            <li><a href="home.jsp">Home</a></li>
+            <li><a href="educational_content.jsp">Educational Content</a></li>
+            <li><a href="event_management.jsp">Event Management</a></li>
+            <li><a href="event_rsvp.jsp">Event RSVP</a></li>
+            <li><a href="recommendations.jsp">Recommendations</a></li>
+            <li><a href="volunteerManagement.jsp">Volunteer Management</a></li>
+            <li><a href="logout.jsp">Logout</a></li> <!-- Logout link -->
         </ul>
     </nav>
+
+    <!-- Main content -->
     <div class="container">
         <h1>Welcome to Community Garden Network</h1>
-        <p>Community Garden Network is your one-stop destination for all things related to gardening, sustainable living, and community engagement. Join our network today and discover a world of resources, events, and volunteering opportunities!</p>
-        <p>Whether you're a seasoned gardener looking to share your expertise or a beginner eager to learn, our platform has something for everyone. Explore personalized recommendations for community gardens, access educational content, RSVP for events, and much more.</p>
-        <p>Get involved in your local community, contribute to sustainable food production, and embark on a journey towards a healthier lifestyle with Community Garden Network!</p>
-    </div>
-    <footer>
+        <p>Connect with fellow garden enthusiasts, discover local community gardens, and explore resources for sustainable living.</p>
+        <p>Community Garden Network is your gateway to:</p>
         <ul>
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="register.jsp">Register</a></li>
-            <li><a href="login.jsp">Login</a></li>
+            <li>Find and join gardening workshops and events</li>
+            <li>Volunteer for rewarding gardening tasks in your area</li>
+            <li>Access educational content on gardening tips, sustainable practices, and more</li>
+            <li>Discover community gardens near you and share your gardening experiences</li>
         </ul>
-        <p>&copy; 2024 Community Garden Network. All rights reserved.</p>
+        <p>Join our growing community today and start your journey towards a greener, healthier lifestyle!</p>
+        <!-- Add more content here as needed -->
+    </div>
+
+    <!-- Your footer content -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Community Garden Network. All rights reserved.</p>
+            <p>Contact: info@communitygardennetwork.com</p>
+        </div>
     </footer>
 </body>
 </html>

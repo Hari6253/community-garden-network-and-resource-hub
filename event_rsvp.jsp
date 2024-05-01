@@ -69,7 +69,7 @@
 
         <!-- Include RSVP form -->
         <h2>RSVP for an Event</h2>
-        <form id="rsvpForm" action="rsvpServlet" method="post">
+        <form id="rsvpForm" action="rsvpevent_process.jsp" method="post">
             <label for="eventName">Event Name:</label>
             <input type="text" id="eventName" name="eventName" required><br>
             <label for="fullName">Full Name:</label>
@@ -78,34 +78,7 @@
             <input type="email" id="email" name="email" required><br>
             <input type="submit" value="RSVP">
         </form>
+        <a href="home.jsp">Back to Home</a>
     </div>
-    <!-- Include JavaScript code for interactive elements -->
-    <script>
-        // Your JavaScript code here
-        document.getElementById('rsvpForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var form = event.target;
-            var formData = new FormData(form);
-            
-            // Example: Send form data using fetch API
-            fetch(form.action, {
-                method: form.method,
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    // RSVP successful
-                    alert('RSVP successful!');
-                } else {
-                    // Error handling
-                    alert('RSVP failed. Please try again.');
-                }
-            })
-            .catch(error => {
-                // Error handling
-                alert('An error occurred while processing your RSVP. Please try again later.');
-            });
-        });
-    </script>
 </body>
 </html>

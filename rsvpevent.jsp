@@ -2,36 +2,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login - Community Garden Network</title>
+    <title>Event RSVP - Community Garden Network</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url('background.jpg'); /* Replace 'background.jpg' with your actual background image */
+            background-image: url('p.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            color: #333; /* Text color */
         }
         .container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
+            color: #333; /* Text color */
             background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
             border-radius: 10px;
-            margin-top: 50px; /* Adjust as needed */
         }
-        h1 {
+        h1, h2 {
             color: #333; /* Heading color */
+        }
+        form {
+            margin-bottom: 20px;
         }
         label {
             display: block;
             margin-bottom: 5px;
+            color: #666; /* Label color */
         }
-        input[type="email"],
-        input[type="password"] {
+        input[type="text"], input[type="email"] {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -53,40 +56,25 @@
         p {
             margin-bottom: 10px;
         }
-        a {
-            color: #007bff; /* Link color */
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-            padding: 10px 0;
-            text-align: center;
-            color: #333; /* Text color */
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Login</h1>
-        <form action="loginProcess.jsp" method="post">
+        <h1>Event RSVP</h1>
+        <div class="events">
+            <p>This section will contain upcoming gardening workshops and events.</p>
+        </div>
+        <h2>RSVP for an Event</h2>
+        <form id="rsvpForm" action="rsvpevent_process.jsp" method="post">
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" required><br>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required><br>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
-            <input type="submit" value="Login">
+            <input type="submit" value="RSVP">
         </form>
-        <p>Don't have an account? <a href="register.jsp">Register here</a></p>
+        <a href="home.jsp">Back to Home</a>
     </div>
-    <footer>
-        <p>&copy; 2024 Community Garden Network. All rights reserved.</p>
-        <p>Contact: info@communitygardennetwork.com</p>
-    </footer>
 </body>
 </html>

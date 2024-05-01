@@ -1,89 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Register - Community Garden Network</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url('p.jpg');
+            background-image: url('background.jpg'); /* Replace 'background.jpg' with your actual background image */
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-        }
-        nav, footer {
-            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav ul, footer ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li, footer ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        nav ul li a, footer ul li a {
-            text-decoration: none;
             color: #333; /* Text color */
-        }
-        nav ul li a:hover, footer ul li a:hover {
-            color: #4CAF50; /* Hover color */
         }
         .container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
-            color: #333; /* Text color */
             background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
             border-radius: 10px;
+            margin-top: 50px; /* Adjust as needed */
         }
         h1 {
             color: #333; /* Heading color */
         }
-        form {
-            margin-top: 20px;
-        }
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
         }
         input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
+            padding: 8px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
         }
         input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #4CAF50; /* Submit button background color */
+            color: white;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #45a049; /* Hover color */
         }
         p {
-            margin-top: 20px;
-            font-size: 14px;
+            margin-bottom: 10px;
         }
-        p a {
-            color: #4CAF50;
+        a {
+            color: #007bff; /* Link color */
             text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
         footer {
             position: fixed;
@@ -93,24 +70,44 @@
             background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
             padding: 10px 0;
             text-align: center;
-        }
-        .footer-content {
-            font-size: 12px;
             color: #333; /* Text color */
         }
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="register.jsp">Register</a></li>
-            <li><a href="login.jsp">Login</a></li>
-        </ul>
-    </nav>
     <div class="container">
         <h1>Register</h1>
-        <form action="registerServlet" method="post">
+        <%
+            String username = request.getParameter("username");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+
+            if (username != null && email != null && password != null) {
+                try {
+                    // Establish database connection
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/park", "root", "");
+
+                    // Insert user data into the Users table
+                    PreparedStatement ps = con.prepareStatement("INSERT INTO Users (username, email, password) VALUES (?, ?, ?)");
+                    ps.setString(1, username);
+                    ps.setString(2, email);
+                    ps.setString(3, password);
+                    int rowsInserted = ps.executeUpdate();
+                    ps.close();
+                    con.close();
+
+                    if (rowsInserted > 0) {
+                        out.println("<p>Registration successful!</p>");
+                    } else {
+                        out.println("<p>Registration failed. Please try again.</p>");
+                    }
+                } catch (Exception e) {
+                    out.println("<p>Error: " + e.getMessage() + "</p>");
+                }
+            }
+        %>
+        <form action="register.jsp" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br>
             <label for="email">Email:</label>
@@ -122,10 +119,8 @@
         <p>Already have an account? <a href="login.jsp">Login here</a></p>
     </div>
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Community Garden Network. All rights reserved.</p>
-            <p>Contact: info@communitygardennetwork.com</p>
-        </div>
+        <p>&copy; 2024 Community Garden Network. All rights reserved.</p>
+        <p>Contact: info@communitygardennetwork.com</p>
     </footer>
 </body>
 </html>
